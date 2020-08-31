@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "privateEndpoints_oramoss_sqlserver_pe_name": {
+      "value": "oramoss-sqlserver-pe"
+    },
+    "privateDnsZones_privatelink_database_windows_net_name": {
+      "value": "privatelink.database.windows.net"
+    },
+    "virtualNetworks_VNet_name": {
+      "value": "VNet"
+    },
+    "sqlserverAdminLogin": {
+      "value": "sqlsvradmin"
+    },
+    "sqlserverAdminLoginPassword": {
+      "value": "S1r0tk1n"
+    },
+    "sqldatabaseName": {
+      "value": "oramoss-sqldatabase"
+    },
+    "sqldatabaseCollation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "sqldatabaseEdition": {
+      "value": "Standard"
+    },
+    "sqldatabaseRequestedServiceObjectiveName": {
+      "value": "S0"
+    },
+    "networkInterfaces_oramoss_sqlserver_pe_nic_name": {
+      "value": "oramoss-sqlserver-pe.nic"
+    },
+    "servers_oramoss_sqlserver_name": {
+      "value": "oramoss-sqlserver"
+    }
+  }
+}
