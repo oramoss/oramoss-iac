@@ -1,0 +1,165 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworks_VNet_name": {
+      "defaultValue": "VNet",
+      "type": "String"
+    },
+    "nsgName": {
+      "type": "String"
+    },
+    "location": {
+      "type": "String"
+    }
+  },
+  "variables": {
+    "VNetPrefix": "10.0.0.0/16",
+    "VNetSubnet1Name": "Data-sn",
+    "VNetSubnet1Prefix": "10.0.0.0/24",
+    "VNetSubnet2Name": "App-sn",
+    "VNetSubnet2Prefix": "10.0.1.0/24",
+    "VNetSubnet3Name": "Web-sn",
+    "VNetSubnet3Prefix": "10.0.2.0/24",
+    "VNetSubnet4Name": "Management-sn",
+    "VNetSubnet4Prefix": "10.0.3.0/24",
+    "VNetSubnet5Name": "AzureBastionSubnet",
+    "VNetSubnet5Prefix": "10.0.4.0/24",
+    "VNetSubnet6Name": "aadds-sn",
+    "VNetSubnet6Prefix": "10.0.5.0/24"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/NetworkSecurityGroups",
+      "name": "[parameters('nsgName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": [
+          {
+            "name": "AllowSyncWithAzureAD",
+            "properties": {
+              "access": "Allow",
+              "priority": 101,
+              "direction": "Inbound",
+              "protocol": "Tcp",
+              "sourceAddressPrefix": "AzureActiveDirectoryDomainServices",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "443"
+            }
+          },
+          {
+            "name": "AllowPSRemoting",
+            "properties": {
+              "access": "Allow",
+              "priority": 301,
+              "direction": "Inbound",
+              "protocol": "Tcp",
+              "sourceAddressPrefix": "AzureActiveDirectoryDomainServices",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "5986"
+            }
+          },
+          {
+            "name": "AllowRD",
+            "properties": {
+              "access": "Allow",
+              "priority": 201,
+              "direction": "Inbound",
+              "protocol": "Tcp",
+              "sourceAddressPrefix": "CorpNetSaw",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "3389"
+            }
+          }
+        ]
+      },
+      "apiVersion": "2018-04-01"
+    },
+    {
+      "name": "[parameters('virtualNetworks_VNet_name')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2020-05-01",
+      "dependsOn": [
+        "[concat('Microsoft.Network/NetworkSecurityGroups/', parameters('nsgName'))]"
+      ],
+      "tags": {
+        "displayName": "VNet"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('VNetPrefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('VNetSubnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('VNetSubnet1Prefix')]",
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          },
+          {
+            "name": "[variables('VNetSubnet2Name')]",
+            "properties": {
+              "addressPrefix": "[variables('VNetSubnet2Prefix')]",
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          },
+          {
+            "name": "[variables('VNetSubnet3Name')]",
+            "properties": {
+              "addressPrefix": "[variables('VNetSubnet3Prefix')]",
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          },
+          {
+            "name": "[variables('VNetSubnet4Name')]",
+            "properties": {
+              "addressPrefix": "[variables('VNetSubnet4Prefix')]",
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          },
+          {
+            "name": "[variables('VNetSubnet5Name')]",
+            "properties": {
+              "addressPrefix": "[variables('VNetSubnet5Prefix')]",
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          },
+          {
+            "name": "[variables('VNetSubnet6Name')]",
+            "properties": {
+              "addressPrefix": "[variables('VNetSubnet6Prefix')]",
+              "networkSecurityGroup": {
+                "id": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/NetworkSecurityGroups/', parameters('nsgName'))]"
+              },
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+          }
+        ],
+        "virtualNetworkPeerings": [],
+        "enableDdosProtection": false,
+        "enableVmProtection": false
+      }
+    }
+  ],
+  "outputs": {
+  }
+}

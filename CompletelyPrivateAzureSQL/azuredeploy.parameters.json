@@ -34,6 +34,152 @@
     },
     "servers_oramoss_sqlserver_name": {
       "value": "oramoss-sqlserver"
+    },
+    "artifactsLocation": {
+      "value": "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_7-20-2020.zip"
+    },
+    "nestedTemplatesLocation": {
+      "value": "https://catalogartifact.azureedge.net/publicartifacts/Microsoft.Hostpool-ARM-1.0.14-preview/"
+    },
+    "subscription": {
+      "value": "f6295c5c-ddb5-45fb-94f0-bddceae94283"
+    },
+    "resourceGroup": {
+      "value": "oramoss-iac-rg"
+    },
+    "hostpoolName": {
+      "value": "oramoss-wvdhp"
+    },
+    "hostpoolDescription": {
+      "value": "Created through the WVD extension"
+    },
+    "location": {
+      "value": "eastus2"
+    },
+    "validationEnvironment": {
+      "value": false
+    },
+    "addToWorkspace": {
+      "value": false
+    },
+    "hostpoolType": {
+      "value": "Personal"
+    },
+    "loadBalancerType": {
+      "value": "Persistent"
+    },
+    "customRdpProperty": {
+      "value": ""
+    },
+    "vmTemplate": {
+      "value": "{\"domain\":\"oramoss.com\",\"galleryImageOffer\":\"Windows-10\",\"galleryImagePublisher\":\"microsoftwindowsdesktop\",\"galleryImageSKU\":\"19h2-ent-g2\",\"imageType\":\"Gallery\",\"imageUri\":null,\"customImageId\":null,\"namePrefix\":\"oramoss-wvd\",\"osDiskType\":\"StandardSSD_LRS\",\"useManagedDisks\":true,\"vmSize\":{\"id\":\"Standard_D2s_v3\",\"cores\":2,\"ram\":8},\"galleryItemId\":\"microsoftwindowsdesktop.windows-1019h2-ent-g2\"}"
+    },
+    "tokenExpirationTime": {
+      "value": "2020-09-02T09:25:24.693Z"
+    },
+    "administratorAccountUsername": {
+      "value": "jeff.moss@oramoss.com"
+    },
+    "administratorAccountPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/f6295c5c-ddb5-45fb-94f0-bddceae94283/resourceGroups/akv-rg/providers/Microsoft.KeyVault/vaults/akv-dev"
+        },
+        "secretName": "DomainAdminPassword"
+      }
+    },
+    "createAvailabilitySet": {
+      "value": true
+    },
+    "vmResourceGroup": {
+      "value": "oramoss-iac-rg"
+    },
+    "vmLocation": {
+      "value": "uksouth"
+    },
+    "vmSize": {
+      "value": "Standard_D2s_v3"
+    },
+    "vmNumberOfInstances": {
+      "value": 1
+    },
+    "vmNamePrefix": {
+      "value": "oramoss-wvd"
+    },
+    "vmImageType": {
+      "value": "Gallery"
+    },
+    "vmDiskType": {
+      "value": "StandardSSD_LRS"
+    },
+    "vmUseManagedDisks": {
+      "value": true
+    },
+    "existingVnetName": {
+      "value": "VNet"
+    },
+    "existingSubnetName": {
+      "value": "WVD"
+    },
+    "virtualNetworkResourceGroupName": {
+      "value": "oramoss-iac-rg"
+    },
+    "usePublicIP": {
+      "value": false
+    },
+    "createNetworkSecurityGroup": {
+      "value": false
+    },
+    "domain": {
+      "value": ""
+    },
+    "ouPath": {
+      "value": ""
+    },
+    "hostpoolTags": {
+      "value": {}
+    },
+    "applicationGroupTags": {
+      "value": {}
+    },
+    "availabilitySetTags": {
+      "value": {}
+    },
+    "networkInterfaceTags": {
+      "value": {}
+    },
+    "networkSecurityGroupTags": {
+      "value": {}
+    },
+    "publicIPAddressTags": {
+      "value": {}
+    },
+    "virtualMachineTags": {
+      "value": {}
+    },
+    "imageTags": {
+      "value": {}
+    },
+    "apiVersion": {
+      "value": "2019-12-10-preview"
+    },
+    "deploymentId": {
+      "value": "785777b9-80ec-4cf9-9446-80beeb648038"
+    },
+    "vmGalleryImageOffer": {
+      "value": "Windows-10"
+    },
+    "vmGalleryImagePublisher": {
+      "value": "microsoftwindowsdesktop"
+    },
+    "vmGalleryImageSKU": {
+      "value": "19h2-ent-g2"
+    },
+    "maxSessionLimit": {
+      "value": 2
+    },
+    "personalDesktopAssignmentType": {
+      "value": "Automatic"
     }
   }
 }

@@ -60,14 +60,16 @@
     },
     "servers_oramoss_sqlserver_name": {
       "type": "String"
-    }
+    },
   },
   "variables": {
     "VNetPrefix": "10.0.0.0/16",
     "VNetSubnet1Name": "SQLServer",
     "VNetSubnet1Prefix": "10.0.0.0/24",
-    "VNetSubnet2Name": "VMs",
-    "VNetSubnet2Prefix": "10.0.1.0/24"
+    "VNetSubnet2Name": "WVD",
+    "VNetSubnet2Prefix": "10.0.1.0/24",
+    "VNetSubnet3Name": "AzureBastionSubnet",
+    "VNetSubnet3Prefix": "10.0.2.0/24",
   },
   "resources": [
     {
@@ -118,6 +120,15 @@
               "privateEndpointNetworkPolicies": "Disabled",
               "privateLinkServiceNetworkPolicies": "Enabled"
             }
+          },
+          {
+            "name": "[variables('VNetSubnet3Name')]",
+            "properties": {
+              "addressPrefix": "[variables('VNetSubnet3Prefix')]",
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Disabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            }
           }
         ],
         "virtualNetworkPeerings": [],
@@ -137,7 +148,7 @@
       "properties": {
         "administratorLogin": "[parameters('sqlserverAdminLogin')]",
         "version": "12.0",
-        "publicNetworkAccess": "Enabled",
+        "publicNetworkAccess": "Disabled",
         "administratorLoginPassword": "[parameters('sqlserverAdminLoginPassword')]"
       },
       "resources": [
@@ -280,18 +291,6 @@
       }
     },
     {
-      "type": "Microsoft.Sql/servers/firewallRules",
-      "apiVersion": "2015-05-01-preview",
-      "name": "[concat(parameters('servers_oramoss_sqlserver_name'), '/AllowAllWindowsAzureIps')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('servers_oramoss_sqlserver_name'))]"
-      ],
-      "properties": {
-        "startIpAddress": "0.0.0.0",
-        "endIpAddress": "0.0.0.0"
-      }
-    },
-    {
       "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
       "apiVersion": "2018-09-01",
       "name": "[concat(parameters('privateDnsZones_privatelink_database_windows_net_name'), '/mechwrkrktwqs')]",
@@ -324,7 +323,7 @@
           "description": "Auto-approved"
         }
       }
-    }
+    },
   ],
   "outputs": {
   }

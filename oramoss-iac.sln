@@ -5,6 +5,15 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "CompletelyPrivateAzureSQL", "CompletelyPrivateAzureSQL\CompletelyPrivateAzureSQL.deployproj", "{7BD66F14-4580-42FA-BD01-43E77E2779BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D8FB8F17-BFA1-44B8-879E-19BF6D387DCB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "FlatNetwork", "FlatNetwork\FlatNetwork.deployproj", "{B84B395D-DCFC-469D-8681-1E85F30D8EEF}"
+EndProject
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AADDS", "AADDS\AADDS.deployproj", "{1A087B5A-EDAC-413D-B3A2-CF5BA73A8D47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +24,14 @@ Global
 		{7BD66F14-4580-42FA-BD01-43E77E2779BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BD66F14-4580-42FA-BD01-43E77E2779BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BD66F14-4580-42FA-BD01-43E77E2779BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84B395D-DCFC-469D-8681-1E85F30D8EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84B395D-DCFC-469D-8681-1E85F30D8EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84B395D-DCFC-469D-8681-1E85F30D8EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84B395D-DCFC-469D-8681-1E85F30D8EEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A087B5A-EDAC-413D-B3A2-CF5BA73A8D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A087B5A-EDAC-413D-B3A2-CF5BA73A8D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A087B5A-EDAC-413D-B3A2-CF5BA73A8D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A087B5A-EDAC-413D-B3A2-CF5BA73A8D47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

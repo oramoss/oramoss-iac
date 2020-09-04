@@ -1,0 +1,57 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "domainName": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "vnetName": {
+      "type": "string"
+    },
+    "vnetNameResourceGroupName": {
+      "type": "string"
+    },
+    "subnetName": {
+      "type": "string"
+    },
+    "filteredSync": {
+      "type": "string"
+    },
+    "domainConfigurationType": {
+      "type": "string"
+    },
+    "notificationSettings": {
+      "type": "object"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2020-01-01",
+      "type": "Microsoft.AAD/DomainServices",
+      "name": "[parameters('domainName')]",
+      "location": "[parameters('location')]",
+      "dependsOn": [],
+      "properties": {
+        "domainName": "[parameters('domainName')]",
+        "subnetId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('vnetNameResourceGroupName'), '/providers/Microsoft.Network/virtualNetworks/', parameters('vnetName'), '/subnets/', parameters('subnetName'))]",
+        "filteredSync": "[parameters('filteredSync')]",
+        "domainConfigurationType": "[parameters('domainConfigurationType')]",
+        "notificationSettings": "[parameters('notificationSettings')]",
+        "replicaSets": [
+          {
+            "subnetId": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('vnetNameResourceGroupName'), '/providers/Microsoft.Network/virtualNetworks/', parameters('vnetName'), '/subnets/', parameters('subnetName'))]",
+            "location": "[parameters('location')]"
+          }
+        ],
+        "sku": "[parameters('sku')]"
+      }
+    },
+  ],
+  "outputs": {}
+}
